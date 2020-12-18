@@ -62,3 +62,49 @@ calculate_percent_above_average(txt_file, average):
 
 main()
 """
+
+def main():
+    average = class_avg("Final.txt")
+    calculate_percent_above_average("Final.txt", average)
+
+def class_avg(txt_file):
+    total = 0.0
+    number_of_grades = 0.0
+    average = 0.0
+
+    infile = open(txt_file, 'r')
+
+    for line in infile:
+        amount = float(line)
+        total += amount
+        number_of_grades += 1
+    average = total/number_of_grades
+
+    print("Number of grades: ",number_of_grades)
+    print("Average Grade: ", average)
+
+    infile.close()
+
+    return average
+
+def calculate_percent_above_average(txt_file,class_average):
+    average = class_average
+    students_above_average = 0.0
+    total_students = 0.0
+
+
+    infile = open(txt_file, 'r')
+
+    for line in infile:
+        total_students += 1
+        if float(line) > average:
+            students_above_average += 1
+        percent_above_average = (students_above_average/total_students)*100
+
+    print("Percentage of grade above average: ",round(percent_above_average,2),"%")
+
+    infile.close()
+
+    return percent_above_average
+
+main()
